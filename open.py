@@ -7,6 +7,8 @@ times=[]
 df=pandas.DataFrame(columns=["Start","End"])#to store wen obj movement occurs
 video=cv2.VideoCapture(0)
 flag=0
+s=""
+s1=""
 while True:
     check,frame=video.read()
     status=0#initially status is 0
@@ -50,7 +52,12 @@ while True:
     cv2.imshow('thresh',thresh_delta)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-print("detection captured during time:",s,"to",s1)
-cv2.imshow("detected obj",firsts_frame)
+if(s!=""):
+    print("detection captured during time:",s,"to",s1)
+    cv2.imshow("detected obj",firsts_frame)
+else:
+    print("no object detected")
+
+    
 video.release()
 cv2.destroyAllWindows
